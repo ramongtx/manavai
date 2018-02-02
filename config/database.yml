@@ -1,0 +1,16 @@
+---
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: buscamtg_development
+
+test:
+  <<: *default
+  database: buscamtg_test<%= ENV['TEST_ENV_NUMBER'] %>
+
+production:
+  url: <%= ENV['DATABASE_URL'] %>

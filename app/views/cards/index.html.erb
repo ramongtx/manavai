@@ -1,0 +1,14 @@
+<form>
+  Busca:<br>
+  <%= text_field_tag :term, params[:term] %>
+  <input type="submit" value="Submit">
+</form>
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Edição</th>
+    </tr>
+    <% @cards.each do |card| %>
+        <%= render partial: 'card_row', locals: { card: card } %>
+    <% end %>
+</table>
