@@ -12,9 +12,7 @@ class Card < ApplicationRecord
   def update_props_from(mtg_card)
     portuguese_details = mtg_card.foreign_names&.select { |fn| fn.language == 'Portuguese (Brazil)' }&.first
     props = CARD_PROPS.map { |prop| [prop, mtg_card.send(prop)] }.to_h
-    if portuguese_details.present?
-      props = props.merge(portuguese_name: portuguese_details.name)
-    end
+    props = props.merge(portuguese_name: portuguese_details.name) if portuguese_details.present?
     update_attributes(props)
   end
 
