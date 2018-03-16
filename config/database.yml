@@ -6,11 +6,11 @@ default: &default
 
 development:
   <<: *default
-  database: buscamtg_development
+  database: buscamagic_development
 
 test:
   <<: *default
-  database: buscamtg_test<%= ENV['TEST_ENV_NUMBER'] %>
+  database: buscamagic_test<%= ENV['TEST_ENV_NUMBER'] %>
 
 production:
   url: <%= ENV['DATABASE_URL'] %>
