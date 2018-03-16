@@ -1,22 +1,34 @@
 class Card < ApplicationRecord
-  IMPORTABLE_PROPS = %i[name colors color_identity type rarity set text power toughness multiverse_id image_url
-                        mana_cost names].freeze
+  CARD_PROPS = %i[name colors color_identity type rarity text power toughness mana_cost names].freeze
+  PRINTING_PROPS = %i[set image_url multiverse_id id].freeze
 
   def self.create_or_update_from(mtg_card)
-    new_card = find_or_initialize_by(mtg_id: mtg_card.id)
-    new_card.update_from_mtg_card(mtg_card)
+    new_card = find_or_initialize_by(name: mtg_card.name)
+    new_card.update_props_from(mtg_card)
+    new_card.update_printings_from(mtg_card)
     new_card.save!
   end
 
-  def update_from_mtg_card(mtg_card)
+  def update_props_from(mtg_card)
     portuguese_details = mtg_card.foreign_names&.select { |fn| fn.language == 'Portuguese (Brazil)' }&.first
-    props = IMPORTABLE_PROPS.map do |prop|
-      [prop, mtg_card.send(prop)]
-    end.to_h
+    props = CARD_PROPS.map { |prop| [prop, mtg_card.send(prop)] }.to_h
     if portuguese_details.present?
-      props = props.merge(portuguese_name: portuguese_details.name, portuguese_mid: portuguese_details.multiverse_id)
+      props = props.merge(portuguese_name: portuguese_details.name)
     end
     update_attributes(props)
+  end
+
+  def update_printings_from(mtg_card)
+    portuguese_details = mtg_card.foreign_names&.select { |fn| fn.language == 'Portuguese (Brazil)' }&.first
+    new_printing = PRINTING_PROPS.map { |prop| [prop, mtg_card.send(prop)] }.to_h
+    new_printing = new_printing.merge(portuguese_mid: portuguese_details.multiverse_id) if portuguese_details.present?
+    add_printing(new_printing)
+  end
+
+  def add_printing(printing)
+    self.printings |= []
+    self.printings.delete_if { |p| p['id'] == printing[:id] }
+    self.printings << printing
   end
 
   def self.inheritance_column
