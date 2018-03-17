@@ -1,14 +1,12 @@
-<form>
-  Busca<i class="ms ms-u"></i>:<br>
-  <%= text_field_tag :term, params[:term] %>
-  <input type="submit" value="Submit">
-</form>
-<table>
-    <tr>
-        <th>Nome</th>
-        <th>Edição</th>
-    </tr>
-    <% @cards.each do |card| %>
-        <%= render partial: 'card_row', locals: { card: card } %>
-    <% end %>
-</table>
+<div class="row">
+  <%= form_tag(cards_path, method: :get, class: 'col s12') do %>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= text_field_tag :term, @term %>
+        <label for="term">Nome da carta</label>
+        <%= submit_tag 'Buscar', class: 'btn waves-effect waves-light' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render partial: 'card_list', locals: { cards: @cards } %>

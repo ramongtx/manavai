@@ -8,6 +8,26 @@ class Card < ApplicationRecord
                                    using: { tsearch: { prefix: true, negation: true } },
                                    ranked_by: 'name'
 
+  def image_url(set = nil)
+    return printings.select { |printing| printing['image_url'].present? }.first['image_url'] if set.blank?
+    printing.select { |printing| printing.set == set }.first & ['image_url']
+  end
+
+  def portuguese_image_url(set = nil)
+    prints = portuguese_printings
+    prints = portuguese_printings.select { |printing| printing.set == set } if set.present?
+    return image_url(set) if prints.empty?
+    image_url_for_mid prints.first['portuguese_mid']
+  end
+
+  def image_url_for_mid(mid)
+    "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=#{mid}&type=card"
+  end
+
+  def portuguese_printings
+    printings.select { |printing| printing['portuguese_mid'].present? }
+  end
+
   def self.create_or_update_from(mtg_card)
     new_card = find_or_initialize_by(name: mtg_card.name)
     new_card.update_props_from(mtg_card)
