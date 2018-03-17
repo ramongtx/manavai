@@ -1,6 +1,12 @@
 class Card < ApplicationRecord
+  include PgSearch
+
   CARD_PROPS = %i[name colors color_identity type rarity text power toughness mana_cost names].freeze
   PRINTING_PROPS = %i[set image_url multiverse_id id].freeze
+
+  pg_search_scope :search_by_name, against: %i[name portuguese_name], ignoring: :accents,
+                                   using: { tsearch: { prefix: true, negation: true } },
+                                   ranked_by: 'name'
 
   def self.create_or_update_from(mtg_card)
     new_card = find_or_initialize_by(name: mtg_card.name)
