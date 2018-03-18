@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Flash Haste
+    %title ManaVai
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
@@ -10,7 +10,7 @@
     .navbar-fixed
       %nav
         .nav-wrapper
-          %a.brand-logo Flash Haste
+          %a.brand-logo &nbsp;ManaVai
           %ul.right
             - if user_signed_in?
               %li
