@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index list card]
+  before_action :authenticate_user!, except: %i[index list]
 
   def index
     @term = params[:term]
@@ -9,6 +9,7 @@ class CardsController < ApplicationController
   def list
     @updatable = params[:updatable]
     @cards = Card.search_by_name(params[:term])
+    render 'list_update'
   end
 
   def want
@@ -18,6 +19,7 @@ class CardsController < ApplicationController
     else
       current_user.wanted_cards << @card
     end
+    render 'card_update'
   end
 
   def have
@@ -27,5 +29,6 @@ class CardsController < ApplicationController
     else
       current_user.owned_cards << @card
     end
+    render 'card_update'
   end
 end
