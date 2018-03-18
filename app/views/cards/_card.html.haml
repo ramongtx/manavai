@@ -10,4 +10,4 @@
         %b> Tradução:
          #{card.portuguese_name}
     .card-action
-      %a{:href => "#"} Quero!
+      = link_to 'Quero!', want_card_path(card), method: :put, remote: true
