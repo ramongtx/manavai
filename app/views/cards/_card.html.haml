@@ -1,0 +1,13 @@
+.col.l4.m6.s12
+  .card
+    .card-image
+      = image_tag (card.image_url || 'card_back.jpg')
+    .card-content
+      %p
+        %b> Nome:
+         #{card.name}
+      %p
+        %b> Tradução:
+         #{card.portuguese_name}
+    .card-action
+      %a{:href => "#"} Quero!

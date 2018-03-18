@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.2'
+gem 'devise', '~> 4.4.3'
+gem 'haml-rails', '~> 1.0.0'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'material_icons', '~> 2.2.1'
