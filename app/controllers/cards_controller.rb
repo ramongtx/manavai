@@ -1,19 +1,16 @@
 class CardsController < ApplicationController
   before_action :authenticate_user!, except: %i[index list]
+  before_action :extract_params
+  before_action :find_cards, only: %i[index list]
+  before_action :find_single_card, only: %i[want have]
 
-  def index
-    @term = params[:term]
-    @cards = Card.search_by_name(@term)
-  end
+  def index; end
 
   def list
-    @updatable = params[:updatable]
-    @cards = Card.search_by_name(params[:term])
     render 'shared/list_update'
   end
 
   def want
-    @card = Card.find(params[:id])
     if current_user.wanted_cards.include?(@card)
       current_user.want_list.where(card: @card).destroy_all
     else
@@ -23,12 +20,26 @@ class CardsController < ApplicationController
   end
 
   def have
-    @card = Card.find(params[:id])
     if current_user.owned_cards.include?(@card)
       current_user.have_list.where(card: @card).destroy_all
     else
       current_user.owned_cards << @card
     end
     render 'shared/card_update'
+  end
+
+  private
+
+  def extract_params
+    @updatable = params[:updatable]
+    @term = params[:term]
+  end
+
+  def find_cards
+    @cards = Card.search_by_name(@term)
+  end
+
+  def find_single_card
+    @card = Card.find(params[:id])
   end
 end
