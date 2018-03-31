@@ -9,7 +9,7 @@ class CardsController < ApplicationController
   def list
     @updatable = params[:updatable]
     @cards = Card.search_by_name(params[:term])
-    render 'list_update'
+    render 'shared/list_update'
   end
 
   def want
@@ -19,7 +19,7 @@ class CardsController < ApplicationController
     else
       current_user.wanted_cards << @card
     end
-    render 'card_update'
+    render 'shared/card_update'
   end
 
   def have
@@ -29,6 +29,6 @@ class CardsController < ApplicationController
     else
       current_user.owned_cards << @card
     end
-    render 'card_update'
+    render 'shared/card_update'
   end
 end

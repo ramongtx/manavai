@@ -1,0 +1,4 @@
+.row
+  - cards.each do |card|
+    %div[card]
+      = render partial: 'shared/card', locals: { card: card }

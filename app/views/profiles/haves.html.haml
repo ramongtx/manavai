@@ -1,6 +1,6 @@
 .row
   %h4
-    = 'Busca'
+    = 'Tenho'
 .row
   = form_tag({ action: :list }, remote: true, class: 'col s12 m8 push-m2') do
     .row
@@ -9,7 +9,8 @@
           = text_field_tag :term, @term
           %label{:for => "term"} Nome da carta
           = hidden_field_tag :updatable, '#card_list'
+          = hidden_field_tag :list, 'have'
         .input-field
-          = submit_tag 'Buscar', class: 'btn waves-effect waves-light'
+          = submit_tag 'Filtrar', class: 'btn waves-effect waves-light'
 #card_list
   = render partial: 'shared/card_list', locals: { cards: @cards }

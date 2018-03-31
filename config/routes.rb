@@ -11,5 +11,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :profile, only: [:show] do
+    collection do
+      get 'wants'
+      get 'haves'
+      post 'list'
+    end
+  end
+
   root to: 'cards#index'
 end
