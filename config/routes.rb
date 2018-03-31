@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :profile, only: [:show] do
+  resource :profile, only: [] do
     collection do
       get 'wants'
       get 'haves'
