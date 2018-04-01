@@ -13,9 +13,9 @@ class Card < ApplicationRecord
     "#{name} / #{portuguese_name}"
   end
 
-  def image_url(set = nil)
-    return printings.select { |printing| printing['image_url'].present? }.first['image_url'] if set.blank?
-    printing.select { |printing| printing.set == set }.first & ['image_url']
+  def image_url
+    first_print = printings.select { |printing| printing && printing['image_url'].present? }.first
+    return first_print['image_url'] if first_print.present?
   end
 
   def portuguese_image_url(set = nil)

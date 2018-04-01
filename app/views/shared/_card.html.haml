@@ -1,4 +1,8 @@
-.collapsible-header #{card.formatted_name}
+.collapsible-header
+  %span.card-type-icons
+    - card_types_icon(card).each do |type|
+      %i.ms.ms-fw{ class: type }
+  #{card.name}
 .collapsible-body.card.horizontal.collapsible-card
   .card-image
     = image_tag (card.image_url || 'card_back.jpg')
