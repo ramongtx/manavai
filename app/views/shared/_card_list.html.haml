@@ -1,4 +1,10 @@
 .row
-  - cards.each do |card|
-    %div[card]
-      = render partial: 'shared/card', locals: { card: card }
+  .col.s12
+    - if cards.empty?
+      .center-align
+        %h4.text-center Sem resultados
+    - else
+      %ul.collapsible.popout.collapsible-accordion{ "data-collapsible" => "accordion" }
+        - cards.each do |card|
+          %li[card]
+            = render partial: 'shared/card', locals: { card: card }

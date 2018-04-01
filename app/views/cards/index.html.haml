@@ -1,15 +1,1 @@
-.row
-  %h4
-    = 'Busca'
-.row
-  = form_tag({ action: :list }, remote: true, class: 'col s12 m8 push-m2') do
-    .row
-      .col.s12{ style: 'display: flex' }
-        .input-field{ style: 'flex-grow: 100' }
-          = text_field_tag :term, @term
-          %label{:for => "term"} Nome da carta
-          = hidden_field_tag :updatable, '#card_list'
-        .input-field
-          = submit_tag 'Buscar', class: 'btn waves-effect waves-light'
-#card_list
-  = render partial: 'shared/card_list', locals: { cards: @cards }
+= render partial: 'shared/card_page', locals: { title: 'Busca', list: nil, label: 'Buscar', cards: @cards }

@@ -8,6 +8,11 @@ class Card < ApplicationRecord
                                    using: { tsearch: { prefix: true, negation: true } },
                                    ranked_by: 'name'
 
+  def formatted_name
+    return name if portuguese_name.blank?
+    "#{name} / #{portuguese_name}"
+  end
+
   def image_url(set = nil)
     return printings.select { |printing| printing['image_url'].present? }.first['image_url'] if set.blank?
     printing.select { |printing| printing.set == set }.first & ['image_url']

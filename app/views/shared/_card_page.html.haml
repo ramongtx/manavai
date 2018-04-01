@@ -1,0 +1,7 @@
+.row
+  %h4
+    = title
+.row
+  = render partial: 'shared/card_search', locals: { list: list, label: label }
+#card_list
+  = render partial: 'shared/card_list', locals: { cards: cards }
