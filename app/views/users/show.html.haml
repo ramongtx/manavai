@@ -1,0 +1,12 @@
+.row
+  %h4
+    = @user.username
+%h4
+  Quer
+#wanted_cards
+  = render partial: 'shared/card_list', locals: { cards: @wanted_cards }
+%h4
+  Tem
+#owned_cards
+  = render partial: 'shared/card_list', locals: { cards: @owned_cards }
+    

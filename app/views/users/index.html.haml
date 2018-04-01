@@ -1,0 +1,17 @@
+.row
+  %h4
+    = 'Usuários'
+.row
+  %table.striped.highlight
+    %thead
+      %tr
+        %th Usuário
+        %th Quer
+        %th Tem
+    %tbody
+    - @users.each do |user|
+      %tr
+        %td
+          = link_to(user.username, user_path(user.username))
+        %td #{user.wanted_cards.count}
+        %td #{user.owned_cards.count}
