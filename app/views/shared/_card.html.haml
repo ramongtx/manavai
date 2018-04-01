@@ -1,12 +1,12 @@
 .collapsible-header
-  %span.card-type-icons
+  %span.card-type-icons.hide-on-small-only
     - card_types_icon(card).each do |type|
-      %i.ms.ms-fw{ class: type }
+      %i{ class: type }
   #{card.name}
   %span.card-costs-icons
     - card_costs_icon(card).each do |cost|
-      %i.ms.ms-fw{ class: cost }
-.collapsible-body.card.horizontal.collapsible-card
+      %i{ class: cost }
+.collapsible-body.card.horizontal.collapsible-card{ style: 'display: none' }
   .card-image
     = image_tag (card.image_url || 'card_back.jpg')
   .card-stacked

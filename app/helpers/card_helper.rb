@@ -1,7 +1,7 @@
 module CardHelper
   def card_types_icon(card)
     types = card.type.split(' ').map(&:downcase) & %w[land creature instant sorcery planeswalker enchantment artifact]
-    types.map { |type| "ms-#{type}" }
+    types.map { |type| "ms ms-fw ms-#{type}" }
   end
 
   def card_costs_icon(card)
@@ -10,9 +10,9 @@ module CardHelper
       cost = cost.first.downcase
       cost.sub!('/', '')
       if cost.length == 2 && !cost.include?('p')
-        "ms-cost ms-shadow ms-split ms-#{cost.downcase}"
+        "ms ms-fw ms-cost ms-shadow ms-split ms-#{cost.downcase}"
       else
-        "ms-cost ms-shadow ms-#{cost.downcase}"
+        "ms ms-fw ms-cost ms-2x ms-shadow ms-#{cost.downcase}"
       end
     end
   end
