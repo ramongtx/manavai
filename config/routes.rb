@@ -11,15 +11,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :profile, only: [] do
-    collection do
+  resources :users, only: [:index, :show], path: 'u' do
+    member do
       get 'wants'
       get 'haves'
       post 'list'
     end
   end
-
-  resources :users, only: [:index, :show], path: 'u'
 
   root to: 'cards#index'
 end

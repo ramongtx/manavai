@@ -1,6 +1,10 @@
 .row
   %h4
-    = title
+    %span.card-page-title
+      = title
+      - if user.present?
+        de
+        = link_to(user.username, user_path(user.username))
 .row
   = render partial: 'shared/card_search', locals: { list: list, label: label }
 #card_list

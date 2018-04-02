@@ -2,9 +2,9 @@
   = link_to('Busca', cards_path)
 - if user_signed_in?
   %li
-    = link_to('Quero', wants_profile_path)
+    = link_to('Quero', wants_user_path(current_user.username))
   %li
-    = link_to('Tenho', haves_profile_path)
+    = link_to('Tenho', haves_user_path(current_user.username))
   %li
     = link_to('Usuários', users_path)
   %li
