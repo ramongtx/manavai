@@ -6,6 +6,6 @@
         de
         = link_to(user.username, user_path(user.username))
 .row
-  = render partial: 'shared/card_search', locals: { list: list, label: label }
+  = render partial: 'shared/card_search', locals: { list: list, label: label, username: user.username }
 #card_list
   = render partial: 'shared/card_list', locals: { cards: cards }

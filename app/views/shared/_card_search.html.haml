@@ -6,5 +6,6 @@
         %label{:for => "term"} Nome da carta
         = hidden_field_tag :updatable, '#card_list'
         = hidden_field_tag :list, list if list.present?
+        = hidden_field_tag :id, username if username.present?
       .input-field
         = submit_tag label, class: 'btn waves-effect waves-light'

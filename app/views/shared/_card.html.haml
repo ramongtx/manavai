@@ -3,6 +3,12 @@
     - card_types_icon(card).each do |type|
       %i{ class: type }
   #{card.name}
+  %span.card-markers-icons
+    - if user_signed_in?
+      - if current_user.wanted_cards.ids.include?(card.id)
+        %i.material-icons.tiny.blue-text star
+      - if current_user.owned_cards.ids.include?(card.id)
+        %i.material-icons.tiny.red-text bookmark
   %span.card-costs-icons
     - card_costs_icon(card).each do |cost|
       %i{ class: cost }

@@ -2,11 +2,11 @@
   %h4
     = @user.username
 %h4
-  Quer
+  = link_to('Quer', haves_user_path(@user.username))
 #wanted_cards
   = render partial: 'shared/card_list', locals: { cards: @wanted_cards }
 %h4
-  Tem
+  = link_to('Tem', wants_user_path(@user.username))
 #owned_cards
   = render partial: 'shared/card_list', locals: { cards: @owned_cards }
     

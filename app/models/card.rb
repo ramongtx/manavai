@@ -44,7 +44,7 @@ class Card < ApplicationRecord
     portuguese_details = mtg_card.foreign_names&.select { |fn| fn.language == 'Portuguese (Brazil)' }&.first
     props = CARD_PROPS.map { |prop| [prop, mtg_card.send(prop)] }.to_h
     props = props.merge(portuguese_name: portuguese_details.name) if portuguese_details.present?
-    update_attributes(props)
+    update(props)
   end
 
   def update_printings_from(mtg_card)

@@ -6,19 +6,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(username: params[:id])
     @wanted_cards = @user.wanted_cards
     @owned_cards = @user.owned_cards
   end
 
   def wants
-    @user = User.find_by(username: params[:id])
     @list_type = 'want'
     find_cards
   end
 
   def haves
-    @user = User.find_by(username: params[:id])
     @list_type = 'have'
     find_cards
   end
@@ -34,6 +31,7 @@ class UsersController < ApplicationController
     @updatable = params[:updatable]
     @term = params[:term]
     @list_type = params[:list]
+    @user = User.find_by(username: params[:id])
   end
 
   def find_cards

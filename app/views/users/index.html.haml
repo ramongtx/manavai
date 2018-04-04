@@ -6,12 +6,16 @@
     %thead
       %tr
         %th Usuário
-        %th Quer
-        %th Tem
+        %th
+          = user_signed_in? ? 'Quer (# tenho)' : 'Quer'
+        %th
+          = user_signed_in? ? 'Tem (# quero)' : 'Tem'
     %tbody
     - @users.each do |user|
       %tr
         %td
           = link_to(user.username, user_path(user.username))
-        %td #{user.wanted_cards.count}
-        %td #{user.owned_cards.count}
+        %td
+          = "#{user.wanted_cards.count} (#{(user.wanted_cards.ids & current_user.owned_cards.ids).count})"
+        %td
+          = "#{user.owned_cards.count} (#{(user.owned_cards.ids & current_user.wanted_cards.ids).count})"
