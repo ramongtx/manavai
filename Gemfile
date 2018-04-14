@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.4.2'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'devise', '~> 4.4.3'
