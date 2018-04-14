@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'support@manavai.com.br'
+  default from: 'suporte@manavai.com.br'
   layout 'mailer'
 end
