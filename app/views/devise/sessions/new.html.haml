@@ -5,8 +5,8 @@
         %span.card-title Login
         .row
           .input-field.col.s12
-            %label{:for => "email"} E-mail
-            = f.email_field :email, autofocus: true, autocomplete: "email"
+            %label{:for => "login"} Login
+            = f.text_field :login, autofocus: true, autocomplete: "login"
           .input-field.col.s12
             %label{:for => "password"} Password
             = f.password_field :password, autocomplete: "off"

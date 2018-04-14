@@ -1,0 +1,17 @@
+= devise_error_messages!
+.valign-wrapper.row.login-box
+  .col.card.hoverable.s10.pull-s1.m6.pull-m3  
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+      = f.hidden_field :reset_password_token
+      .card-content
+        %span.card-title Trocar senha
+        .row
+          .input-field.col.s12
+            %label{:for => "password"} Senha
+            = f.password_field :password, autocomplete: "off"
+          .input-field.col.s12
+            %label{:for => "password_confirmation"} Confirmação de Senha
+            = f.password_field :password_confirmation, autocomplete: "off"
+      .card-action.right-align
+        = f.submit "Trocar senha", class: "btn waves-effect waves-light"
+= render "devise/shared/links"

@@ -1,0 +1,13 @@
+= devise_error_messages!
+.valign-wrapper.row.login-box
+  .col.card.hoverable.s10.pull-s1.m6.pull-m3    
+    = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+      .card-content
+        %span.card-title Re-enviar confirmação
+        .row
+          .input-field.col.s12
+            %label{:for => "email"} Email
+            = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+      .card-action.right-align
+        = f.submit "Re-enviar confirmação", class: "btn waves-effect waves-light"
+= render "devise/shared/links"
