@@ -31,7 +31,8 @@ class CardsController < ApplicationController
   private
 
   def extract_params
-    @updatable = params[:updatable]
+    @updatable_list = params[:updatable_list]
+    @updatable_album = params[:updatable_album]
     @term = params[:term]
   end
 

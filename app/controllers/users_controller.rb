@@ -28,7 +28,8 @@ class UsersController < ApplicationController
   private
 
   def extract_params
-    @updatable = params[:updatable]
+    @updatable_list = params[:updatable_list]
+    @updatable_album = params[:updatable_album]
     @term = params[:term]
     @list_type = params[:list]
     @user = User.find_by(username: params[:id])

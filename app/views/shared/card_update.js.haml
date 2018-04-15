@@ -1,2 +1,3 @@
-$("#card_#{@card.id}").html("#{j render 'shared/card', card: @card, content_type: 'text/html'}");
-$("#card_#{@card.id} .collapsible-body").show();
+-# $("#card_#{@card.id}").html("#{j render 'shared/card', card: @card, content_type: 'text/html'}");
+-# $("#card_#{@card.id} .collapsible-body").show();
+$("#card-reveal-#{@card.id}").html("#{j render 'shared/card_reveal', card: @card, content_type: 'text/html'}");
