@@ -1,21 +1,11 @@
-.collapsible-header
-  %span.card-type-icons.hide-on-med-and-down
-    - card_types_icon(card).each do |type|
-      %i{ class: type }
-  #{card.name}
-  %span.card-markers-icons
-    - if user_signed_in?
-      - if current_user.wanted_cards.ids.include?(card.id)
-        %i.material-icons.tiny.blue-text star
-      - if current_user.owned_cards.ids.include?(card.id)
-        %i.material-icons.tiny.red-text bookmark
-  %span.card-costs-icons
-    - card_costs_icon(card).each do |cost|
-      %i{ class: cost }
-.collapsible-body.card.horizontal.collapsible-card{ style: 'display: none' }
-  .card-image
-    = image_tag (card.image_url || 'card_back.jpg')
-  .card-stacked
+.card
+  .card-image.activator
+    = image_tag (card.image_url || 'card_back.jpg'), class: 'activator'
+    %a.btn-floating.halfway-fab.card-reveal-fab.waves-effect.waves-light.z-depth-5.pink.darken-3
+      %i.material-icons expand_less
+  .card-reveal
+    .card-title.grey-text.text-darken-4
+      %i.material-icons.right close
     .card-content
       %p
         %b> Nome:
@@ -35,5 +25,7 @@
         - if current_user.owned_cards.include?(card)
           - have_label = 'Não tenho mais!'
           - have_class = 'red-text'
-        = link_to want_label, want_card_path(card), method: :put, remote: true, class: want_class
-        = link_to have_label, have_card_path(card), method: :put, remote: true, class: have_class
+        %p
+          = link_to want_label, want_card_path(card), method: :put, remote: true, class: want_class
+        %p
+          = link_to have_label, have_card_path(card), method: :put, remote: true, class: have_class

@@ -7,5 +7,5 @@
   - cards.each_slice(3) do |three_cards|
     .row
       -three_cards.each do |card|
-        .col.s12.m4.card-reveal-container{ id: "card-reveal-#{card.id}" }
-          = render partial: 'shared/card_reveal', locals: { card: card }
+        .col.s12.m4{ id: "card-#{card.id}" }
+          = render partial: 'shared/card', locals: { card: card }

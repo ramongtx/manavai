@@ -5,7 +5,8 @@
       - if user.present?
         de
         = link_to(user.username, user_path(user.username))
-.row
-  = render partial: 'shared/card_search', locals: { list: list, label: label, username: user&.username }
+- if search
+  .row
+    = render partial: 'shared/card_search', locals: { label: label, username: user&.username }
 #card_album
   = render partial: 'shared/card_album', locals: { cards: cards }

@@ -5,10 +5,7 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def show
-    @wanted_cards = @user.wanted_cards
-    @owned_cards = @user.owned_cards
-  end
+  def show; end
 
   def wants
     @list_type = 'want'
@@ -20,23 +17,17 @@ class UsersController < ApplicationController
     find_cards
   end
 
-  def list
-    find_cards
-    render 'shared/list_update'
-  end
-
   private
 
   def extract_params
     @updatable_list = params[:updatable_list]
     @updatable_album = params[:updatable_album]
-    @term = params[:term]
-    @list_type = params[:list]
+    @search = params[:search]
     @user = User.find_by(username: params[:id])
   end
 
   def find_cards
     @cards = @list_type == 'have' ? @user.owned_cards : @user.wanted_cards
-    @cards = @cards.search_by_name(@term).limit(30) if @term.present?
+    @cards = @cards.search_by_name(@search) if @search.present?
   end
 end

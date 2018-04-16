@@ -1,18 +1,18 @@
 class CardsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index list]
+  before_action :authenticate_user!, except: %i[index album]
   before_action :extract_params
-  before_action :find_cards, only: %i[index list]
+  before_action :find_cards, only: %i[index album]
   before_action :find_single_card, only: %i[want have]
 
   def index; end
 
-  def list
-    render 'shared/list_update'
+  def album
+    render 'shared/album_update'
   end
 
   def want
     if current_user.wanted_cards.include?(@card)
-      current_user.want_list.where(card: @card).destroy_all
+      current_user.want_album.where(card: @card).destroy_all
     else
       current_user.wanted_cards << @card
     end
@@ -21,7 +21,7 @@ class CardsController < ApplicationController
 
   def have
     if current_user.owned_cards.include?(@card)
-      current_user.have_list.where(card: @card).destroy_all
+      current_user.have_album.where(card: @card).destroy_all
     else
       current_user.owned_cards << @card
     end
@@ -31,13 +31,12 @@ class CardsController < ApplicationController
   private
 
   def extract_params
-    @updatable_list = params[:updatable_list]
     @updatable_album = params[:updatable_album]
-    @term = params[:term]
+    @search = params[:search]
   end
 
   def find_cards
-    @cards = Card.search_by_name(@term).limit
+    @cards = Card.search_by_name(@search).limit(30)
   end
 
   def find_single_card

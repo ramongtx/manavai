@@ -2,8 +2,6 @@ $(document).on('turbolinks:load ready', function() {
   elem = document.querySelector('#left-sidenav');
   instance = new M.Sidenav(elem, {});
   M.updateTextFields();
-
-  $('.collapsible').collapsible();
 });
 
 $(document).on('ready turbolinks:before-visit', function() {

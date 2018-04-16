@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       put 'have'
     end
     collection do
-      post 'list'
+      post 'album'
     end
   end
 
@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     member do
       get 'wants'
       get 'haves'
-      post 'list'
     end
   end
 
