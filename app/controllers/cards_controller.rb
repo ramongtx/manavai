@@ -37,7 +37,7 @@ class CardsController < ApplicationController
   end
 
   def find_cards
-    @cards = Card.search_by_name(@term)
+    @cards = Card.search_by_name(@term).limit
   end
 
   def find_single_card

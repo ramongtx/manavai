@@ -37,6 +37,6 @@ class UsersController < ApplicationController
 
   def find_cards
     @cards = @list_type == 'have' ? @user.owned_cards : @user.wanted_cards
-    @cards = @cards.search_by_name(@term) if @term.present?
+    @cards = @cards.search_by_name(@term).limit(30) if @term.present?
   end
 end

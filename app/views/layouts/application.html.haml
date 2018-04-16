@@ -14,7 +14,7 @@
       %nav
         .nav-wrapper
           %a.brand-logo{ href: cards_path } &nbsp;ManaVai
-          %a.left.button-collapse.hide-on-large-only{ href: "#", "data-activates" => "left-sidenav" }
+          %a.left.sidenav-trigger.hide-on-large-only{ href: "#", "data-target" => "left-sidenav" }
             %i.material-icons menu
           %ul.right.hide-on-med-and-down
             = render partial: 'shared/menu_items'

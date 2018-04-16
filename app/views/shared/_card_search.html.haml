@@ -1,10 +1,10 @@
-%nav
+%nav.white
   .nav-wrapper
-    = form_tag({ action: :list }, remote: true, class: 'col s12') do
+    = form_tag({ action: :list }, remote: true) do
       .input-field{ style: 'flex-grow: 100' }
         = search_field_tag :term, @term
         %label.label-icon{:for => "term"}
-          %i.material-icons search
+          %i.material-icons.black-text search
         = hidden_field_tag :updatable_list, '#card_list'
         = hidden_field_tag :updatable_album, '#card_album'
         = hidden_field_tag :list, list if list.present?
