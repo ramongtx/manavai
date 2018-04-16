@@ -1,16 +1,8 @@
 .card
   .card-image.activator
     = image_tag (card.image_url || 'card_back.jpg'), class: 'activator'
-    %a.btn-floating.halfway-fab.waves-effect.waves-light.red
-      %i.material-icons more_vert
-  .card-content.activator
-    %span.card-title.activator.grey-text.text-darken-4
-      - if user_signed_in?
-        - if current_user.wanted_cards.ids.include?(card.id)
-          %i.material-icons.tiny.blue-text star
-        - if current_user.owned_cards.ids.include?(card.id)
-          %i.material-icons.tiny.red-text bookmark
-      #{card.portuguese_name || card.name}
+    %a.btn-floating.halfway-fab.card-reveal-fab.waves-effect.waves-light.z-depth-5.pink.darken-3
+      %i.material-icons expand_less
   .card-reveal
     .card-title.grey-text.text-darken-4
       %i.material-icons.right close
