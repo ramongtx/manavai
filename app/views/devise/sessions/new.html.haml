@@ -10,10 +10,7 @@
           .input-field.col.s12
             %label{:for => "password"} Senha
             = f.password_field :password, autocomplete: "off", placeholder: "Senha"
-        -# - if devise_mapping.rememberable?
-        -#   .field
-        -#     = f.check_box :remember_me
-        -#     = f.label :remember_me
+          = hidden_field_tag :remember_me, true
       .card-action.right-align
         = f.submit "Entrar", class: "btn waves-effect waves-light"
 = render "devise/shared/links"

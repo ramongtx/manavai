@@ -12,7 +12,7 @@ class CardsController < ApplicationController
 
   def want
     if current_user.wanted_cards.include?(@card)
-      current_user.want_album.where(card: @card).destroy_all
+      current_user.want_list.where(card: @card).destroy_all
     else
       current_user.wanted_cards << @card
     end
@@ -21,7 +21,7 @@ class CardsController < ApplicationController
 
   def have
     if current_user.owned_cards.include?(@card)
-      current_user.have_album.where(card: @card).destroy_all
+      current_user.have_list.where(card: @card).destroy_all
     else
       current_user.owned_cards << @card
     end

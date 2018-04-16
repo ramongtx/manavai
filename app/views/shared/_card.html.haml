@@ -3,29 +3,5 @@
     = image_tag (card.image_url || 'card_back.jpg'), class: 'activator'
     %a.btn-floating.halfway-fab.card-reveal-fab.waves-effect.waves-light.z-depth-5.pink.darken-3
       %i.material-icons expand_less
-  .card-reveal
-    .card-title.grey-text.text-darken-4
-      %i.material-icons.right close
-    .card-content
-      %p
-        %b> Nome:
-         #{card.name}
-      %p
-        %b> Tradução:
-         #{card.portuguese_name}
-    - if current_user.present?
-      .card-action
-        - want_label = 'Quero!'
-        - have_label = 'Tenho!'
-        - want_class = 'green-text'
-        - have_class = ''
-        - if current_user.wanted_cards.include?(card)
-          - want_label = 'Não quero mais!'
-          - want_class = 'red-text'
-        - if current_user.owned_cards.include?(card)
-          - have_label = 'Não tenho mais!'
-          - have_class = 'red-text'
-        %p
-          = link_to want_label, want_card_path(card), method: :put, remote: true, class: want_class
-        %p
-          = link_to have_label, have_card_path(card), method: :put, remote: true, class: have_class
+  .card-reveal{ id: "card-reveal-#{card.id}" }
+    = render partial: 'shared/card_reveal', locals: { card: card }
