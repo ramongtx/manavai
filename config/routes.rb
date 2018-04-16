@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:index, :show], path: 'u' do
+  resources :users, only: %i[index show], path: 'u' do
     member do
       get 'wants'
       get 'haves'
